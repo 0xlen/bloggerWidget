@@ -1,0 +1,42 @@
+<style>
+#log li ul{
+    max-height: 300px;
+    overflow: auto;
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    var feed = 'http://len.hack-stuff.com'
+    $.ajax({
+        url: feed + '/feeds/posts/summary' ,
+        type: 'GET' ,
+        dataType: 'xml' ,
+        cache: false ,
+        async: true ,
+        success: function(rss){
+            $('entry',rss).each(function(i){
+                $('#log').append('<li><a href=### class=toggle>'
+                + $('title',this).text()
+                + '</a></li>' );
+                $('#log li').eq(i).append('<ul>'
+                + $('summary',this).text().replace(/\n/g,'<br/>')
+                + '<br/>'
+                + '<a target=_TOP href='
+                + $('link[rel="alternate"]',this).attr('href')
+                + ' >Read more...</a>' +
+               '</ul>');
+               $('#log li ul').eq(i).slideUp('slow');
+               $('#log li:has(a)').eq(i).click(function(){
+                   $('#log li ul').eq(i).toggle('slow');
+               })
+            })
+        }
+    });
+    $('#loadingICO').remove();
+});
+</script>
+<ul style='text-align:center;'>
+    <img id='loadingICO' src='img/loading.gif' />
+</ul>
+<ul id="log"></ul>
