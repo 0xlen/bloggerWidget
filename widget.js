@@ -35,11 +35,12 @@
                        $( obj ).find('li ul').eq(i).toggle('slow');
                    })
                 })
+            } ,
+            complete: function(){
+                $('#loadingICO').remove();
             }
 
         });
-
-       $('#loadingICO').remove();
     });
   }  
 })(jQuery);
