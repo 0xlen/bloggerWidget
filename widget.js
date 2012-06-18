@@ -11,11 +11,14 @@
                        <img id=loadingICO src=' + settings.img +
                       ' /></div>')
         $.ajax({
-            url: settings.url + '/feeds/posts/summary?alt=json' ,
+            url: settings.url + '/feeds/posts/summary?alt=json&callback=?' ,
             type: 'GET' ,
             dataType: 'json' ,
             cache: false ,
             async: true ,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Accept", "text/javascript");
+            },
             success: function(rss){
                 $(rss.feed.entry).each(function(i){
                     var link;
