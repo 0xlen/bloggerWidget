@@ -1,4 +1,11 @@
+/*
+* Len @ Hack-stuff Technology
+* http://len.hack-stuff.com
+*/
+
 (function($){
+    var version = '1.1rc'
+
     $.fn.bloggerWidget = function(set){
         var settings = $.extend({
             url : 'http://steven5538.hack-stuff.com' ,
@@ -50,7 +57,12 @@
                 $('#loadingICO').remove();
             }
 
-        });
+        }); 
+            $( obj ).after('<div style=text-align:right;>'
+                            + ' <p><a href=http://github.com/0xlen/bloggerWidget>'
+                            + 'bloggerWidget</a> - '
+                            + version +
+                            '</p></div>')
     });
   }  
 })(jQuery);
