@@ -1,7 +1,7 @@
 (function($){
     $.fn.bloggerWidget = function(set){
         var settings = $.extend({
-            url : 'http://len.hack-stuff.com' ,
+            url : 'http://steven5538.hack-stuff.com' ,
             img : 'img/loading.gif' ,
         } ,set)
 
@@ -11,22 +11,23 @@
                        <img id=loadingICO src=' + settings.img +
                       ' /></div>')
         $.ajax({
-            url: settings.url + '/feeds/posts/summary' ,
+            url: settings.url + '/feeds/posts/summary?alt=json' ,
             type: 'GET' ,
-            dataType: 'xml' ,
+            dataType: 'json' ,
             cache: false ,
             async: true ,
             success: function(rss){
-                $('entry',rss).each(function(i){
+                $(rss.feed.entry).each(function(i){
                     $( obj ).append('<li><a href=###>'
-                    + $('title',this).text()
+                    + this.title.$t
                     + '</a></li>' );
 
                     $( obj ).find('li').eq(i).append('<ul>'
-                    + $('summary',this).text().replace(/\n/g,'<br/>')
+                    + this.summary.$t.replace(/\n/g,'<br/>')
                     + '<br/>'
                     + '<a target=_TOP href='
-                    + $('link[rel="alternate"]',this).attr('href')
+                    //+ $('link[rel="alternate"]',this).attr('href')
+                    //+ link
                     + '>Read more...</a>'
                     + '</ul>');
 
