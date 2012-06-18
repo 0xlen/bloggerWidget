@@ -18,6 +18,12 @@
             async: true ,
             success: function(rss){
                 $(rss.feed.entry).each(function(i){
+                    var link;
+                    for (var l = 0 ; l < this.link.length ; l++){
+                        if ( this.link[l].rel == 'alternate' ){
+                            link = this.link[l].href;
+                        }
+                    }
                     $( obj ).append('<li><a href=###>'
                     + this.title.$t
                     + '</a></li>' );
@@ -27,7 +33,7 @@
                     + '<br/>'
                     + '<a target=_TOP href='
                     //+ $('link[rel="alternate"]',this).attr('href')
-                    //+ link
+                    + link
                     + '>Read more...</a>'
                     + '</ul>');
 
