@@ -1,7 +1,14 @@
+/*
+* Len @ Hack-stuff Technology
+* http://len.hack-stuff.com
+*/
+
 (function($){
+    var version = '1.1rc'
+
     $.fn.bloggerWidget = function(set){
         var settings = $.extend({
-            url : 'http://len.hack-stuff.com' ,
+            url : 'http://steven5538.hack-stuff.com' ,
             img : 'img/loading.gif' ,
         } ,set)
 
@@ -11,22 +18,32 @@
                        <img id=loadingICO src=' + settings.img +
                       ' /></div>')
         $.ajax({
-            url: settings.url + '/feeds/posts/summary' ,
+            url: settings.url + '/feeds/posts/summary?alt=json&callback=?' ,
             type: 'GET' ,
-            dataType: 'xml' ,
+            dataType: 'json' ,
             cache: false ,
             async: true ,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Accept", "text/javascript");
+            },
             success: function(rss){
-                $('entry',rss).each(function(i){
+                $(rss.feed.entry).each(function(i){
+                    var link;
+                    for (var l = 0 ; l < this.link.length ; l++){
+                        if ( this.link[l].rel == 'alternate' ){
+                            link = this.link[l].href;
+                        }
+                    }
                     $( obj ).append('<li><a href=###>'
-                    + $('title',this).text()
+                    + this.title.$t
                     + '</a></li>' );
 
                     $( obj ).find('li').eq(i).append('<ul>'
-                    + $('summary',this).text().replace(/\n/g,'<br/>')
+                    + this.summary.$t.replace(/\n/g,'<br/>')
                     + '<br/>'
                     + '<a target=_TOP href='
-                    + $('link[rel="alternate"]',this).attr('href')
+                    //+ $('link[rel="alternate"]',this).attr('href')
+                    + link
                     + '>Read more...</a>'
                     + '</ul>');
 
@@ -40,7 +57,12 @@
                 $('#loadingICO').remove();
             }
 
-        });
+        }); 
+            $( obj ).after('<div style=text-align:right;>'
+                            + ' <p><a href=http://github.com/0xlen/bloggerWidget>'
+                            + 'bloggerWidget</a> - '
+                            + version +
+                            '</p></div>')
     });
   }  
 })(jQuery);
