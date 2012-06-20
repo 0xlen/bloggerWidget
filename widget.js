@@ -10,6 +10,10 @@
         var settings = $.extend({
             url : 'http://steven5538.hack-stuff.com' ,
             img : 'img/loading.gif' ,
+            type : 'default' ,
+            //last : 0 ,
+            artStyle: {
+            },
         } ,set)
 
     $(this).each(function(){
@@ -28,36 +32,45 @@
             },
             success: function(rss){
                 $(rss.feed.entry).each(function(i){
+                    if (i >= settings.last) return;
                     var link;
                     for (var l = 0 ; l < this.link.length ; l++){
                         if ( this.link[l].rel == 'alternate' ){
                             link = this.link[l].href;
                         }
                     }
-                    $( obj ).append('<li><a href=###>'
-                    + this.title.$t
-                    + '</a></li>' );
-
-                    $( obj ).find('li').eq(i).append('<ul>'
-                    + this.summary.$t.replace(/\n/g,'<br/>')
-                    + '<br/>'
-                    + '<a target=_TOP href='
-                    //+ $('link[rel="alternate"]',this).attr('href')
-                    + link
-                    + '>Read more...</a>'
-                    + '</ul>');
-
-                   $( obj ).find('li ul').eq(i).slideUp('fast');
-                   $( obj ).find('li').filter(':has(a)').eq(i).click(function(){
-                       $( obj ).find('li ul').eq(i).toggle('slow');
-                   })
-                })
+                    
+                   if (settings.type != 'none'){
+                        $( obj ).append('<li><a href=###>'
+                        + this.title.$t
+                        + '</a></li>' );
+                        
+                        $( obj ).find('li').eq(i).append('<ul>'
+                        + this.summary.$t.replace(/\n/g,'<br/>')
+                        + '<br/>'
+                        + '<a target=_TOP href='
+                        //+ $('link[rel="alternate"]',this).attr('href')
+                        + link
+                        + '>Read more...</a>'
+                        + '</ul>');
+                       $( obj ).find('li ul').eq(i).slideUp('fast');
+                           $( obj ).find('li').filter(':has(a)').eq(i).click(function(){
+                               $( obj ).find('li ul').eq(i).toggle('slow'); 
+                           })
+                   }
+                   else{
+                       $( obj ).append('<li><a target=_TOP href=' + link + '>'
+                        + this.title.$t
+                        + '</a></li>' );
+                   }
+               })
             } ,
             complete: function(){
                 $('#loadingICO').remove();
+                $( obj ).find('li ul').css(settings.artStyle);
             }
-
-        }); 
+        });
+            
             $( obj ).after('<div style=text-align:right;>'
                             + ' <p><a href=http://github.com/0xlen/bloggerWidget>'
                             + 'bloggerWidget</a> - '

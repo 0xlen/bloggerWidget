@@ -2,7 +2,14 @@
 <script type="text/javascript" src="widget.js"></script>
 <script>
 $(function(){
-    $('ul').bloggerWidget();
+    $('ul').bloggerWidget({
+        //url : 'summary',
+        //type: 'none' ,
+        //last: 5,
+        artStyle : {
+          'color' : 'blue',  
+        },
+    });
 })
 </script>
 
