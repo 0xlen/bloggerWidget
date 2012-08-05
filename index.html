@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bloggerwidget : List blogger posts widget." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Bloggerwidget</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/0xlen/bloggerWidget">View on GitHub</a>
+
+          <h1 id="project_title">Bloggerwidget</h1>
+          <h2 id="project_tagline">List blogger posts widget.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/0xlen/bloggerWidget/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/0xlen/bloggerWidget/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Blogger Widget 1.1rc</h1>
+
+<p>bloggerWidget </p>
+
+<p>is a widget can list your blogger posts</p>
+
+<p>with</p>
+
+<ul>
+<li>title</li>
+<li>summary</li>
+<li>link.</li>
+</ul><p>It can use on</p>
+
+<ul>
+<li>Google Blogger</li>
+<li>Your own blog</li>
+<li>personal website ...etc</li>
+</ul><p>The bloggerWidget developed in jQuery and works on Internet Explorer ,Fifrefox , Chrome.</p>
+
+<h2>License</h2>
+
+<p>bloggerWidger released under the MIT License.</p>
+
+<h2>How to use?</h2>
+
+<h3>include jQuery library.</h3>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<h3>Include widget</h3>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://raw.github.com/0xlen/bloggerWidget/master/widget.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<h3>Setting argument</h3>
+
+<div class="highlight"><pre>$('#log').bloggerWidget({
+    /* Blogger URL */
+    url: 'http://len.hack-stuff.com',
+    /* The Loading img */
+    img: 'http://ppt.cc/689~'
+})
+</pre></div>
+
+<h2>Sample</h2>
+
+<ul>
+<li><p><a href="http://len.hack-stuff.com/p/post.html">http://len.hack-stuff.com/p/post.html</a></p></li>
+<li><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://raw.github.com/0xlen/bloggerWidget/master/widget.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#log'</span><span class="p">).</span><span class="nx">bloggerWidget</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s1">'http://len.hack-stuff.com'</span><span class="p">,</span>
+    <span class="nx">img</span><span class="o">:</span> <span class="s1">'http://ppt.cc/689~'</span>
+ <span class="p">})</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"log"</span><span class="nt">&gt;&lt;/ul&gt;</span>
+</pre></div></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bloggerwidget maintained by <a href="https://github.com/0xlen">0xlen</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
